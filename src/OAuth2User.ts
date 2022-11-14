@@ -7,6 +7,8 @@ import { AuthClient, AuthHeader } from "./types";
 import { RequestOptions, rest } from "./request";
 
 export type OAuth2Scopes =
+  | "dm.read"
+  | "dm.write"
   | "tweet.read"
   | "tweet.write"
   | "tweet.moderate.write"
@@ -79,7 +81,7 @@ interface RevokeAccessTokenResponse {
   revoked: boolean;
 }
 
-interface GetTokenResponse {
+export interface GetTokenResponse {
   /** Allows an application to obtain a new access token without prompting the user via the refresh token flow. */
   refresh_token?: string;
   /** Access tokens are the token that applications use to make API requests on behalf of a user.  */
@@ -90,7 +92,7 @@ interface GetTokenResponse {
   scope?: string;
 }
 
-interface Token extends Omit<GetTokenResponse, "expires_in"> {
+export interface Token extends Omit<GetTokenResponse, "expires_in"> {
   /** Date that the access_token will expire at.  */
   expires_at?: number;
 }

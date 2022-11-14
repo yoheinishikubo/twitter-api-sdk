@@ -157,7 +157,11 @@ function buildClasses(classes: {
     if (name && description && externalDocs) {
       output += `\n/**\n* ${name}\n*\n* ${description}\n*\n* ${externalDocs.description}\n* ${externalDocs.url}\n*/\n`;
     }
-    output += `public readonly ${x} = {
+    const xx = x
+      .split(" ")
+      .map((v, i) => (i > 0 ? v[0].toUpperCase() + v.slice(1) : v))
+      .join("");
+    output += `public readonly ${xx} = {
       ${functions.join("\n,")}
     };`;
   });
